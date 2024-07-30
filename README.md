@@ -1,66 +1,85 @@
-## Foundry
+## BatchTransfer Smart Contract [[Link](https://sepolia.etherscan.io/address/0xe69dbc3ca1a2e23eb0db04b59dd490dcf55e5e97#code)]
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+**Batching contract to facilitate Ethereum (ETH) transactions in batches**
 
 ## Usage
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
 ### Format
+
+To format the Solidity source files, run:
 
 ```shell
 $ forge fmt
 ```
 
-### Gas Snapshots
+### Build
+
+To compile the BatchTransfer smart contract, use the following command:
 
 ```shell
-$ forge snapshot
+$ forge build
 ```
 
-### Anvil
+### Configure .env file
+
+Configure .env within the root directory of repository
+
+`TEST_PRIVATE_KEY=XXXXXX`
+`PRIVATE_KEY=XXXXXX`
+`RPC_URL=XXXXXX`
+`SEPOLIA_RPC_URL=XXXXXX`
+`ETHERSCAN_API_KEY=XXXXXX`
 
 ```shell
-$ anvil
-```
+$ vi .env
+$ source .env
+``` 
 
-### Deploy
+### Deploy and Verify
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
+To deploy and verify the BatchTransfer smart contract on the Sepolia Testnet, execute:
 
 ```shell
-$ cast <subcommand>
+$ forge script script/batchTransfer.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
 ```
 
-### Help
+**Note** : The `privateKey` is added in the .env file for development purposes only. For production environments, it is recommended to use the `cast` tool of foundry as shown below:
 
 ```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+$ cast wallet import privateKey --interactive
+``` 
+![alt text](image.png)
+
+## Using docker [Optional]
+
+### Pull the batchtransfer image
+```shell
+$ docker pull arrjunpradeep/batchtransfer:latest
+``` 
+
+### Pull the batchtransfer image
+```shell
+$ docker pull arrjunpradeep/batchtransfer:latest
+``` 
+
+### Configure .env file within the directory 
+
+`TEST_PRIVATE_KEY=XXXXXX`
+`PRIVATE_KEY=XXXXXX`
+`RPC_URL=XXXXXX`
+`SEPOLIA_RPC_URL=XXXXXX`
+`ETHERSCAN_API_KEY=XXXXXX`
+
+```shell
+$ vi .env
+$ source .env
+``` 
+
+### Run the container for deploying and verifying the smart contract 
+```shell
+$ docker run arrjunpradeep/batchtransfer --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY ./src/batchTransfer.sol:BatchTransfer --verify --etherscan-api-key $ETHERSCAN_API_KEY
+``` 
+
+
+
+
