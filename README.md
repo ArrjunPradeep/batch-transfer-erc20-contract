@@ -1,84 +1,55 @@
-## BatchTransfer Smart Contract [[Link](https://sepolia.etherscan.io/address/0xe69dbc3ca1a2e23eb0db04b59dd490dcf55e5e97#code)]
+## BatchTransfer Smart Contract [[batchTransferContract](https://sepolia.etherscan.io/address/0xe69dbc3ca1a2e23eb0db04b59dd490dcf55e5e97#code)] [[erc20Contract]([text](https://sepolia.etherscan.io/address/0xd2c9a5064d22431eef538b003a6f44f1992eb033#code))]
 
-**Batching contract to facilitate Ethereum (ETH) transactions in batches**
+## Overview
 
-## Usage
+**The BatchTransfer Smart Contract, developed using the `Foundry` framework, is designed to facilitate Ethereum (ETH) transactions in batches. This contract allows for efficient processing of multiple transactions within a single contract execution. In addition to the primary `BatchTransfer` contract, the setup also includes support for deploying and verifying `ERC20` smart contracts as part of the process.**
 
-### Format
+## Prerequisites
+- Docker
 
-To format the Solidity source files, run:
+## Setup 
 
-```shell
-$ forge fmt
-```
+1. **Pull the Image**
 
-### Build
+    ```shell
+    docker pull arrjunpradeep/foundry:latest
+    ``` 
 
-To compile the BatchTransfer smart contract, use the following command:
+2. **Configure `.env` file within the directory**
 
-```shell
-$ forge build
-```
+- TEST_PRIVATE_KEY=XXXXXX
+- PRIVATE_KEY=XXXXXX
+- RPC_URL=XXXXXX
+- SEPOLIA_RPC_URL=XXXXXX
+- ETHERSCAN_API_KEY=XXXXXX
 
-### Configure .env file
+    **Source the `.env` file**
 
-Configure .env within the root directory of repository
+    ```shell
+    source .env
+    ``` 
 
-`TEST_PRIVATE_KEY=XXXXXX`
-`PRIVATE_KEY=XXXXXX`
-`RPC_URL=XXXXXX`
-`SEPOLIA_RPC_URL=XXXXXX`
-`ETHERSCAN_API_KEY=XXXXXX`
+3. **Deploy and Verify the BatchTransfer Smart Contract**
 
-```shell
-$ vi .env
-$ source .env
-``` 
+    Run the container for deploying and verifying the `BatchTransfer` smart contract:
 
-### Deploy and Verify
+    ```shell
+    docker run arrjunpradeep/foundry --rpc-url $SEPOLIA_RPC_URL --private-ke
+    y $PRIVATE_KEY ./src/batchTransfer.sol:BatchTransfer --verify --etherscan-api-key $ETHERSCAN_API_KEY
+    ``` 
+4. **Deploy and Verify the ERC20 Smart Contract**
 
-To deploy and verify the BatchTransfer smart contract on the Sepolia Testnet, execute:
+    Run the container for deploying and verifying the `ERC20` smart contract (default name : `USDT`) :
 
-```shell
-$ forge script script/batchTransfer.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
-```
+    ```shell
+    docker run arrjunpradeep/foundry --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY ./src/erc20.sol:USDT --verify --etherscan-api-key $ETHERSCAN_API_KEY
+    ``` 
 
-**Note** : The `privateKey` is added in the .env file for development purposes only. For production environments, it is recommended to use the `cast` tool of foundry as shown below:
+    **Notes :**
 
-```shell
-$ cast wallet import privateKey --interactive
-``` 
-![alt text](image.png)
+    ****The PRIVATE_KEY is included in the .env file for development purposes only. For production environments, it is recommended to use secure methods to manage sensitive information.****
 
-## Using docker [Optional]
 
-### Pull the batchtransfer image
-```shell
-$ docker pull arrjunpradeep/batchtransfer:latest
-``` 
-
-### Pull the batchtransfer image
-```shell
-$ docker pull arrjunpradeep/batchtransfer:latest
-``` 
-
-### Configure .env file within the directory 
-
-`TEST_PRIVATE_KEY=XXXXXX`
-`PRIVATE_KEY=XXXXXX`
-`RPC_URL=XXXXXX`
-`SEPOLIA_RPC_URL=XXXXXX`
-`ETHERSCAN_API_KEY=XXXXXX`
-
-```shell
-$ vi .env
-$ source .env
-``` 
-
-### Run the container for deploying and verifying the smart contract 
-```shell
-$ docker run arrjunpradeep/batchtransfer --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY ./src/batchTransfer.sol:BatchTransfer --verify --etherscan-api-key $ETHERSCAN_API_KEY
-``` 
 
 
 
