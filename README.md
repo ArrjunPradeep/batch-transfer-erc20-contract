@@ -1,4 +1,4 @@
-## BatchTransfer Smart Contract [[batchTransferContract](https://sepolia.etherscan.io/address/0xe69dbc3ca1a2e23eb0db04b59dd490dcf55e5e97#code)] [[erc20Contract]([text](https://sepolia.etherscan.io/address/0xd2c9a5064d22431eef538b003a6f44f1992eb033#code))]
+## BatchTransfer Smart Contract [[batchTransferContract](https://sepolia.etherscan.io/address/0xe69dbc3ca1a2e23eb0db04b59dd490dcf55e5e97#code)] [[erc20Contract](https://sepolia.etherscan.io/address/0xd2c9a5064d22431eef538b003a6f44f1992eb033#code)]
 
 ## Overview
 
